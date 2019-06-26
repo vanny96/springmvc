@@ -2,7 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Spring Core Online Tutorial</title>
+    <title>Spring Core Online Tutorial - List Products</title>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
 
     <link href="https://cdn.jsdelivr.net/webjars/org.webjars/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,10 +18,25 @@
 
   <body>
     <div class="container">
-      <h1>Hello World!</h1>
-    
-      <h2>This is my thymeleaf index page</h2>
+      <div th:if="${not #lists.isEmpty(products)}">
+
+        <table class="table table-striped">
+          <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Image Url</th>
+          </tr>
+
+          <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.description}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.imageUrl}"></td>
+          </tr>
+        </table>
+
+      </div>
     </div>
   </body>
-
 </html>
