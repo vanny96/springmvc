@@ -2,9 +2,12 @@ package com.vanny96.springmvc.services;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.management.RuntimeErrorException;
 
 import com.vanny96.springmvc.domain.Product;
 
@@ -23,6 +26,36 @@ public class ProductServiceImpl implements ProductService {
   public List<Product> listAllProducts() {
     return new ArrayList<>(products.values());
   }
+
+  @Override
+  public Product getProductById(Integer id) {
+    return products.get(id);
+  }
+
+  @Override
+  public Product saveOrUpdateProduct(Product product) {
+    if(product != null){
+      if(product.getId() == null){
+        product.setId(getNextKey());
+      }
+
+      products.put(product.getId(), product);
+      return product;
+      
+    } else {
+      throw new RuntimeException("Product can't be null");
+    }
+  }
+
+  @Override
+  public Product removeProductById(Integer id) {
+    return products.remove(id); 
+  }
+
+  private int getNextKey(){
+    return Collections.max(products.keySet()) + 1;
+  }
+
 
   private void loadProducts(){
     products = new HashMap<>();
@@ -66,6 +99,6 @@ public class ProductServiceImpl implements ProductService {
     product5.setImageUrl("http://example.com/product5");
 
     products.put(5, product5);
-}
+  }
   
 }
