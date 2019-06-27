@@ -25,20 +25,20 @@ public class ProductController{
   public String listProducts(Model model){
     model.addAttribute("products", productService.listAllProducts());
 
-    return "products";
+    return "product/index";
   }
 
   @RequestMapping("product/{id}")
   public String listProduct(Model model,@PathVariable Integer id){
     
     model.addAttribute("product", productService.getProductById(id));
-    return "product";
+    return "product/view";
   }
 
   @RequestMapping("product/new")
   public String newProduct(Model model){
     model.addAttribute("product", new Product());
-    return "productform";
+    return "product/form";
   }
 
   @RequestMapping(value = "product", method = RequestMethod.POST)
@@ -50,7 +50,7 @@ public class ProductController{
   @RequestMapping(value="product/{id}/edit")
   public String editProduct(Model model, @PathVariable Integer id){
     model.addAttribute("product", productService.getProductById(id));
-    return "productform";
+    return "product/form";
   }
 
   @RequestMapping("/product/{id}/delete")
