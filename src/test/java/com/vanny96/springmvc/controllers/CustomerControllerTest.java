@@ -1,13 +1,10 @@
 package com.vanny96.springmvc.controllers;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.vanny96.springmvc.domain.Customer;
-import com.vanny96.springmvc.domain.Product;
 import com.vanny96.springmvc.services.CustomerService;
-import com.vanny96.springmvc.services.ProductService;
 
 import org.junit.Before;
 import org.junit.Test;

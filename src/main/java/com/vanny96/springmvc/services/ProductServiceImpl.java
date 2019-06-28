@@ -9,9 +9,11 @@ import java.util.Map;
 
 import com.vanny96.springmvc.domain.Product;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile("implementation")
 public class ProductServiceImpl implements ProductService {
 
   private Map<Integer, Product> products;

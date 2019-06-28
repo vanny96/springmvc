@@ -1,7 +1,19 @@
 package com.vanny96.springmvc.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Version;
+
+@Entity
 public class Customer implements DomainObject{
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
+
+  @Version
+  private Integer version;
 
   private String firstName;
   private String lastName;
@@ -13,6 +25,14 @@ public class Customer implements DomainObject{
   private String state;
   private String zipCode;
 
+
+  public Integer getVersion() {
+    return this.version;
+  }
+
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
 
   public Integer getId() {
     return this.id;

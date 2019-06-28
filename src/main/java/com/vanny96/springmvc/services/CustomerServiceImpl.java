@@ -8,9 +8,11 @@ import java.util.Map;
 
 import com.vanny96.springmvc.domain.Customer;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile("implementation")
 public class CustomerServiceImpl implements CustomerService {
   private Map<Integer, Customer> customers;
 
