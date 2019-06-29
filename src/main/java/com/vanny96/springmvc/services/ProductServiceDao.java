@@ -43,6 +43,7 @@ public class ProductServiceDao implements ProductService {
     em.getTransaction().begin();
     Product savedProduct = em.merge(product);
     em.getTransaction().commit();
+    em.close();
 
     return savedProduct;
   }
@@ -55,6 +56,7 @@ public class ProductServiceDao implements ProductService {
     Product removedProduct = em.find(Product.class, id);
     em.remove(removedProduct);
     em.getTransaction().commit();
+    em.close();
 
     return removedProduct;
   }
