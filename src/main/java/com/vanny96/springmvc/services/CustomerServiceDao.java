@@ -25,13 +25,19 @@ public class CustomerServiceDao implements CustomerService {
   @Override
   public List<Customer> listAllCustomers() {
     EntityManager em = emf.createEntityManager();
-    return em.createQuery("from Customer", Customer.class).getResultList();
+    List<Customer> customers = em.createQuery("from Customer", Customer.class).getResultList();
+    em.close();
+
+    return customers;
   }
 
   @Override
   public Customer getCostumerById(Integer id) {
     EntityManager em = emf.createEntityManager();
-    return em.find(Customer.class, id);  
+    Customer customer = em.find(Customer.class, id);
+    em.close();
+
+    return customer;  
   }
 
   @Override
@@ -41,6 +47,7 @@ public class CustomerServiceDao implements CustomerService {
     em.getTransaction().begin();
     Customer savedCustomer = em.merge(customer);
     em.getTransaction().commit();
+    em.close();
 
     return savedCustomer;
   }
@@ -53,6 +60,7 @@ public class CustomerServiceDao implements CustomerService {
     Customer removedCustomer = em.find(Customer.class, id);
     em.remove(removedCustomer);
     em.getTransaction().commit();
+    em.close();
 
     return removedCustomer;  }
 

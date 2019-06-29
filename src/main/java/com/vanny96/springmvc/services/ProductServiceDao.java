@@ -25,15 +25,19 @@ public class ProductServiceDao implements ProductService {
   @Override
   public List<Product> listAllProducts() {
     EntityManager em = emf.createEntityManager();
+    List<Product> products = em.createQuery("from Product", Product.class).getResultList();
+    em.close();
 
-    return em.createQuery("from Product", Product.class).getResultList();
+    return products;
   }
 
   @Override
   public Product getProductById(Integer id) {
     EntityManager em = emf.createEntityManager();
+    Product product = em.find(Product.class, id);
+    em.close();
 
-    return em.find(Product.class, id);
+    return product;
   }
 
   @Override

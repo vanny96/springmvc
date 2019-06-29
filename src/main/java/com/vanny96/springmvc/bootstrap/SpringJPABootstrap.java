@@ -32,7 +32,7 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
   @Override
   public void onApplicationEvent(ContextRefreshedEvent event) {
     loadProducts();
-    /* loadCustomers(); */
+    loadCustomers();
   }
 
   public void loadProducts(){
